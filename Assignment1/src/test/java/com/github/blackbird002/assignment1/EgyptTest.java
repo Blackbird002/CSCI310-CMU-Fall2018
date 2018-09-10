@@ -55,12 +55,10 @@ public class EgyptTest {
     @Test
     public void testSplitString() {
         System.out.println("splitString");
-        String inputStr = "";
-        int[] expResult = null;
+        String inputStr = "8 6 10";
+        int[] expResult = {8, 6, 10};
         int[] result = Egypt.splitString(inputStr);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
