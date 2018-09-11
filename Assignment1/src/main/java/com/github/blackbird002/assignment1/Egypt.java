@@ -64,7 +64,7 @@ class EgyptSolver{
     private int a;
     private int b;
     private int c;
-    private int sides[];
+    public int sides[];
 
     public EgyptSolver(int[] threeSides){       
        
@@ -76,7 +76,7 @@ class EgyptSolver{
          
     }
 
-    private void bubbleSort(){
+    public void bubbleSort(){
         for (int i = 0; i < sides.length-1; i++){
             for(int j = 0; j < sides.length-1; j++){
                 if(sides[j] > sides[j+1]){

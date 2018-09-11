@@ -50,5 +50,28 @@ public class EgyptSolverTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of bubbleSort method, of class EgyptSolver.
+     */
+    @Test
+    public void testBubbleSortCase1() {
+        System.out.println("bubbleSort");
+        int[] threeInts = {10,6,8}; 
+        int [] expResult = {6,8,10};
+        EgyptSolver instance = new EgyptSolver(threeInts);        
+        instance.bubbleSort();
+        assertArrayEquals(expResult, instance.sides);
+    }
+    
+    @Test
+    public void testBubbleSortCase2() {
+        System.out.println("bubbleSort");
+        int[] threeInts = {8,10,6}; 
+        int [] expResult = {6,8,10};
+        EgyptSolver instance = new EgyptSolver(threeInts);        
+        instance.bubbleSort();
+        assertArrayEquals(expResult, instance.sides);
+    }
     
 }
