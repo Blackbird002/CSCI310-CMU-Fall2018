@@ -61,6 +61,44 @@ public class Egypt {
 }
 
 class EgyptSolver{
+    private int a;
+    private int b;
+    private int c;
+    private int sides[];
+
+    public EgyptSolver(int[] threeSides){       
+       
+        sides = threeSides;
+        bubbleSort();
+        a = threeSides[0];
+        b = threeSides[1];
+        c = threeSides[2];     
+         
+    }
+
+    private void bubbleSort(){
+        for (int i = 0; i < sides.length-1; i++){
+            for(int j = 0; j < sides.length-1; j++){
+                if(sides[j] > sides[j+1]){
+                    int temp = sides[j];
+                    sides[j] = sides[j+1]; 
+                    sides[j+1] = temp;
+                }
+            }
+        }
+    }
+
+    public boolean isRight(){
+        boolean test = false;
+        a = a * a;
+        b = b * b;
+        c = c * c;
+
+        if((a + b) == c){
+            test = true;
+        }
+        return test;
+    }
 }
 
 
