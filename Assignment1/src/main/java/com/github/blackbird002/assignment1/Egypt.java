@@ -27,9 +27,9 @@ public class Egypt {
             if(threeInts[0] == 0 || threeInts[1] == 0 || threeInts[2] == 0)
                 break;
             
-            //EgyptSolver solver = new EgyptSolver(threeInts);
+            EgyptSolver solver = new EgyptSolver(threeInts);
 
-            //result = solver.isRight();
+            result = solver.isRight();
 
             if(result == true)
                 System.out.println("right");

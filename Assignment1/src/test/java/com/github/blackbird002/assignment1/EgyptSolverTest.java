@@ -70,8 +70,6 @@ public class EgyptSolverTest {
         assertEquals(expResult, result);
     }
     
-    
-
     /**
      * Test of bubbleSort method, of class EgyptSolver.
      */
@@ -89,6 +87,16 @@ public class EgyptSolverTest {
     public void testBubbleSortCase2() {
         System.out.println("bubbleSort");
         int[] threeInts = {8,10,6}; 
+        int [] expResult = {6,8,10};
+        EgyptSolver instance = new EgyptSolver(threeInts);        
+        //bubbleSort gets called in the constructor
+        assertArrayEquals(expResult, instance.sides);
+    }
+    
+    @Test
+    public void testBubbleSortCase3() {
+        System.out.println("bubbleSort");
+        int[] threeInts = {6,8,10}; 
         int [] expResult = {6,8,10};
         EgyptSolver instance = new EgyptSolver(threeInts);        
         //bubbleSort gets called in the constructor
