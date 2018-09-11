@@ -41,15 +41,36 @@ public class EgyptSolverTest {
      * Test of isRight method, of class EgyptSolver.
      */
     @Test
-    public void testIsRight() {
+    public void testIsRightCase1() {
         System.out.println("isRight");
-        EgyptSolver instance = null;
+        int[] threeInts = {10,6,8}; 
+        EgyptSolver instance = new EgyptSolver(threeInts);
+        boolean expResult = true;
+        boolean result = instance.isRight();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testIsRightCase2() {
+        System.out.println("isRight");
+        int[] threeInts = {25,52,60}; 
+        EgyptSolver instance = new EgyptSolver(threeInts);
         boolean expResult = false;
         boolean result = instance.isRight();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
+    
+    @Test
+    public void testIsRightCase3() {
+        System.out.println("isRight");
+        int[] threeInts = {5,12,13}; 
+        EgyptSolver instance = new EgyptSolver(threeInts);
+        boolean expResult = true;
+        boolean result = instance.isRight();
+        assertEquals(expResult, result);
+    }
+    
+    
 
     /**
      * Test of bubbleSort method, of class EgyptSolver.
@@ -60,7 +81,7 @@ public class EgyptSolverTest {
         int[] threeInts = {10,6,8}; 
         int [] expResult = {6,8,10};
         EgyptSolver instance = new EgyptSolver(threeInts);        
-        instance.bubbleSort();
+        //bubbleSort gets called in the constructor
         assertArrayEquals(expResult, instance.sides);
     }
     
@@ -70,7 +91,7 @@ public class EgyptSolverTest {
         int[] threeInts = {8,10,6}; 
         int [] expResult = {6,8,10};
         EgyptSolver instance = new EgyptSolver(threeInts);        
-        instance.bubbleSort();
+        //bubbleSort gets called in the constructor
         assertArrayEquals(expResult, instance.sides);
     }
     
