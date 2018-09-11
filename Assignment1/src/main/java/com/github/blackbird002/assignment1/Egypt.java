@@ -44,9 +44,17 @@ public class Egypt {
 
         threeNums = inputStr.split(" ");
 
-        for(int i = 0; i <= 2; i++){
-            //Type cast the string to an int
-            threeInts[i] = Integer.valueOf(threeNums[i]);
+        //Try to convert a string to an int
+        try{
+            for(int i = 0; i <= 2; i++){
+                //Type cast the string to an int
+                threeInts[i] = Integer.valueOf(threeNums[i]);
+            }
+        }catch(IllegalArgumentException IllegalArgument){
+            /*Since this program is for Kattis, it's better to return an
+            array with 0s so execution and continue
+            */
+            return threeInts;
         }
         return threeInts;     
     }

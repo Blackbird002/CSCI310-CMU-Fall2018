@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "Assignment1",
+                "projectName": "Assignment1",
+                "workingDirectory": "c:\\Users\\riads\\Documents\\GitHub Projects\\CSCI310-CMU-Fall2018\\Assignment1",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "Assignment1",
+                "projectName": "Assignment1",
+                "workingDirectory": "c:\\Users\\riads\\Documents\\GitHub Projects\\CSCI310-CMU-Fall2018\\Assignment1",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
