@@ -50,10 +50,17 @@ public class Egypt {
                 //Type cast the string to an int
                 threeInts[i] = Integer.valueOf(threeNums[i]);
             }
-        }catch(IllegalArgumentException IllegalArgument){
+        }catch(IllegalArgumentException illegalArgument){
             /*Since this program is for Kattis, it's better to return an
             array with 0s so execution and continue
             */
+            threeInts = new int[] {0,0,0}; 
+            return threeInts;
+        }catch(ArrayIndexOutOfBoundsException outOfBounds){
+             /*Since this program is for Kattis, it's better to return an
+            array with 0s so execution and continue
+            */
+            threeInts = new int[] {0,0,0}; 
             return threeInts;
         }
         return threeInts;     

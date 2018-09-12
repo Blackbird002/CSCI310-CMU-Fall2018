@@ -42,11 +42,8 @@ public class EgyptTest {
      */
     @Test
     public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Egypt.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        
     }
 
     /**
@@ -55,19 +52,17 @@ public class EgyptTest {
     @Test
     public void testSplitString() {
         System.out.println("splitString");
-        String inputStr = "";
-        int[] expResult = null;
+        String inputStr = "8 6 10";
+        int[] expResult = {8, 6, 10};
         int[] result = Egypt.splitString(inputStr);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     @Test
     public void testSplitStringCase2() {
         System.out.println("splitString");
-        String inputStr = "8 6 10";
-        int[] expResult = {8, 6, 10};
+        String inputStr = "6 10";
+        int[] expResult = {0, 0, 0};
         int[] result = Egypt.splitString(inputStr);
         assertArrayEquals(expResult, result);
     }
