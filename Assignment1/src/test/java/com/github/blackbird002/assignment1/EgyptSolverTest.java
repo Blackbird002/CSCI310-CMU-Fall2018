@@ -41,7 +41,7 @@ public class EgyptSolverTest {
      * Test of isRight method, of class EgyptSolver.
      */
     @Test
-    public void testIsRightCase1() {
+    public void testIsRight() {
         System.out.println("isRight");
         int[] threeInts = {10,6,8}; 
         EgyptSolver instance = new EgyptSolver(threeInts);
@@ -49,7 +49,7 @@ public class EgyptSolverTest {
         boolean result = instance.isRight();
         assertEquals(expResult, result);
     }
-    
+         
     @Test
     public void testIsRightCase2() {
         System.out.println("isRight");
@@ -74,7 +74,7 @@ public class EgyptSolverTest {
      * Test of bubbleSort method, of class EgyptSolver.
      */
     @Test
-    public void testBubbleSortCase1() {
+    public void testBubbleSort() {
         System.out.println("bubbleSort");
         int[] threeInts = {10,6,8}; 
         int [] expResult = {6,8,10};
@@ -82,7 +82,7 @@ public class EgyptSolverTest {
         //bubbleSort gets called in the constructor
         assertArrayEquals(expResult, instance.sides);
     }
-    
+     
     @Test
     public void testBubbleSortCase2() {
         System.out.println("bubbleSort");
@@ -101,6 +101,5 @@ public class EgyptSolverTest {
         EgyptSolver instance = new EgyptSolver(threeInts);        
         //bubbleSort gets called in the constructor
         assertArrayEquals(expResult, instance.sides);
-    }
-    
+    }  
 }

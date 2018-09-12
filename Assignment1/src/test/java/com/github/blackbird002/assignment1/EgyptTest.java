@@ -53,45 +53,6 @@ public class EgyptTest {
      * Test of splitString method, of class Egypt.
      */
     @Test
-    public void testSplitStringCase1() {
-        System.out.println("splitString");
-        String inputStr = "8 6 10";
-        int[] expResult = {8, 6, 10};
-        int[] result = Egypt.splitString(inputStr);
-        assertArrayEquals(expResult, result);
-    }
-
-    @Test
-    public void testSplitStringCase2() {
-        System.out.println("splitString");
-        String inputStr = "0 0 0";
-        int[] expResult = {0, 0, 0};
-        int[] result = Egypt.splitString(inputStr);
-        assertArrayEquals(expResult, result);
-    }
-
-    @Test
-    public void testSplitStringCase3() {
-        System.out.println("splitString");
-        String inputStr = "";
-        int[] expResult = {0, 0, 0};
-        int[] result = Egypt.splitString(inputStr);
-        assertArrayEquals(expResult, result);
-    }
-
-    @Test
-    public void testSplitStringCase4() {
-        System.out.println("splitString");
-        String inputStr = "Ray Ray Ray";
-        int[] expResult = {0, 0, 0};
-        int[] result = Egypt.splitString(inputStr);
-        assertArrayEquals(expResult, result);
-    }
-
-    /**
-     * Test of splitString method, of class Egypt.
-     */
-    @Test
     public void testSplitString() {
         System.out.println("splitString");
         String inputStr = "";
@@ -100,6 +61,42 @@ public class EgyptTest {
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testSplitStringCase2() {
+        System.out.println("splitString");
+        String inputStr = "8 6 10";
+        int[] expResult = {8, 6, 10};
+        int[] result = Egypt.splitString(inputStr);
+        assertArrayEquals(expResult, result);
+    }
+
+    @Test
+    public void testSplitStringCase3() {
+        System.out.println("splitString");
+        String inputStr = "0 0 0";
+        int[] expResult = {0, 0, 0};
+        int[] result = Egypt.splitString(inputStr);
+        assertArrayEquals(expResult, result);
+    }
+
+    @Test
+    public void testSplitStringCase4() {
+        System.out.println("splitString");
+        String inputStr = "";
+        int[] expResult = {0, 0, 0};
+        int[] result = Egypt.splitString(inputStr);
+        assertArrayEquals(expResult, result);
+    }
+
+    @Test
+    public void testSplitStringCase5() {
+        System.out.println("splitString");
+        String inputStr = "Ray Ray Ray";
+        int[] expResult = {0, 0, 0};
+        int[] result = Egypt.splitString(inputStr);
+        assertArrayEquals(expResult, result);
     }
     
 }
