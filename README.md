@@ -6,4 +6,9 @@ Repository for CSCI 310 Java @ CMU
 <br>
 
 <p>The Kattis problem I solved is called "Egypt". Link:
-<a href="https://open.kattis.com/problems/egypt" target="_blanc">Kattis Egypt Problem </p>
+<a href="https://open.kattis.com/problems/egypt" target="_blank">Kattis Egypt Problem </p>
+
+<p>
+    Kattis Result:
+    <img src="Kattis Results.JPG" alt="Italian Trulli">
+</p>
