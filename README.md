@@ -9,8 +9,7 @@ Repository for CSCI 310 Java @ CMU
 
 <br>
 
-<p>The Kattis problem I solved is called "Egypt". Link:
-<a href="https://open.kattis.com/problems/egypt" target="_blank">Kattis Egypt Problem</a> </p>
+<p>The Kattis problem I solved is called "Egypt". Link: https://open.kattis.com/problems/egypt </p>
 
 <p>
     Kattis Result:
