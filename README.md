@@ -6,6 +6,7 @@ Repository for CSCI 310 Java @ CMU
 <br>
 
 <h2>Assignment#1 is in the Assignment1 folder</h2>
+<p>Link to repository: https://github.com/Blackbird002/CSCI310-CMU-Fall2018/tree/master/Assignment1</p>
 
 <br>
 
