@@ -26,3 +26,5 @@ Repository for CSCI 310 Java @ CMU
     Junit test of the EgyptSolver class:
     <img src="EgyptSolverTest.PNG">
 </p>
+
+<p>Nice work!</p>
