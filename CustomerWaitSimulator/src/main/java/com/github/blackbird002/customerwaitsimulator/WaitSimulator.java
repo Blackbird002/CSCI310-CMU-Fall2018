@@ -16,6 +16,17 @@ import java.util.Queue;
  * This program will use the Java collections library 
  */
 public class WaitSimulator {
+
+    public static void main(String args[]){
+        WaitSimulator sim = new WaitSimulator();
+
+        System.out.println("Running the simulation...");
+        sim.runSimulation();
+
+        
+        for(int i = 0; i < sim.checkedOutCustomers.size(); ++i)
+            System.out.println(sim.checkedOutCustomers.get(i).getName());
+    }
     
     //The check out register sections
     public Queue<Customer> Reg1;
@@ -35,8 +46,11 @@ public class WaitSimulator {
         checkOutCustomers = new LinkedList<>();
         checkedOutCustomers = new LinkedList<>();
         
+        
+        
         for(int i = 0; i <= 20; i++)
-            checkOutCustomers.add(new Customer("Customer" + Integer.toString(i)));
+            checkOutCustomers.add(new Customer("Customer " + Integer.toString(i)));
+            
     }
 
     public void decrementAllTopCustomers(){
@@ -54,34 +68,43 @@ public class WaitSimulator {
 
     public void checkIfDone(){
         if(!Reg1.isEmpty())
-            if(Reg1.peek().getProcTime() == 0)
-                checkedOutCustomers.add(Reg1.remove());
+            if(Reg1.peek().getProcTime() <= 0){
+                Customer temp = Reg1.remove();
+                checkedOutCustomers.add(temp);
+            }
+                
         
-        if(!Reg1.isEmpty())
-            if(Reg2.peek().getProcTime() == 0)
-                checkedOutCustomers.add(Reg2.remove());
+        if(!Reg2.isEmpty())
+            if(Reg2.peek().getProcTime() <= 0){
+                Customer temp = Reg2.remove();
+                checkedOutCustomers.add(temp);
+            }
+                
             
         if(!Reg3.isEmpty())
-            if(Reg3.peek().getProcTime() == 0)
-                checkedOutCustomers.add(Reg3.remove());
+            if(Reg3.peek().getProcTime() <= 0){
+                Customer temp = Reg3.remove();
+                checkedOutCustomers.add(temp);  
+            }
     }
 
     public void addCustomersToQueues(){
-        if(Reg1.size() < 5){
-            Reg1.add(checkOutCustomers.remove());
-        }
-        else if(Reg2.size() < 5){
-            Reg2.add(checkOutCustomers.remove());
-        }
-        else if(Reg3.size() < 5){
-            Reg3.add(checkOutCustomers.remove());
-        }
+        while((Reg1.size() < 5 || Reg2.size() < 5 || Reg2.size() < 5) && !checkOutCustomers.isEmpty())
+            if(Reg1.size() < 5){
+                Reg1.add(checkOutCustomers.remove());
+            }
+            else if(Reg2.size() < 5){
+                Reg2.add(checkOutCustomers.remove());
+            }
+            else if(Reg3.size() < 5){
+                Reg3.add(checkOutCustomers.remove());
+            }
     }
     
     
     public void runSimulation(){
         //While there are still customers in line or in the queues
-        while(checkOutCustomers.isEmpty() == false && (Reg1.isEmpty() == false && Reg2.isEmpty() == false && Reg3.isEmpty() == false)){
+        while(checkOutCustomers.isEmpty() == false || Reg1.isEmpty() == false || Reg2.isEmpty() == false || Reg3.isEmpty() == false){
             
             //Adds each customer to a queue (5 max per queue)
             addCustomersToQueues();
@@ -93,11 +116,6 @@ public class WaitSimulator {
             //If a customer is done being processed, they are poped off the queue and added to processed list
             checkIfDone();
             
-                
-            
-            
-
-
         }
     }
         

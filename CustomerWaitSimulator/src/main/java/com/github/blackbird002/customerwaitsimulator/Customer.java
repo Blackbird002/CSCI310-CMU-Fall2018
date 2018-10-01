@@ -37,6 +37,7 @@ public final class Customer {
     public Customer(){
         name = "John Doe";
         processingTime = 0;
+        originalProcTime = processingTime;
         waitedTime = 0;
     }
     
