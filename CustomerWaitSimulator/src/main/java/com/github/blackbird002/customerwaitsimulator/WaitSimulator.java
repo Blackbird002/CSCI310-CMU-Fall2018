@@ -36,12 +36,69 @@ public class WaitSimulator {
         checkedOutCustomers = new LinkedList<>();
         
         for(int i = 0; i <= 20; i++)
-            checkOutCustomers.add(new Customer("Generic"));
+            checkOutCustomers.add(new Customer("Customer" + Integer.toString(i)));
+    }
+
+    public void decrementAllTopCustomers(){
+        //Decrement the processing time for each person being serviced at the top of the queue
+        if(!Reg1.isEmpty())
+            Reg1.peek().decrementProcTime();
+        
+        if(!Reg2.isEmpty())
+            Reg2.peek().decrementProcTime();
+
+        if(!Reg3.isEmpty())
+            Reg3.peek().decrementProcTime();
+
+    }
+
+    public void checkIfDone(){
+        if(!Reg1.isEmpty())
+            if(Reg1.peek().getProcTime() == 0)
+                checkedOutCustomers.add(Reg1.remove());
+        
+        if(!Reg1.isEmpty())
+            if(Reg2.peek().getProcTime() == 0)
+                checkedOutCustomers.add(Reg2.remove());
+            
+        if(!Reg3.isEmpty())
+            if(Reg3.peek().getProcTime() == 0)
+                checkedOutCustomers.add(Reg3.remove());
+    }
+
+    public void addCustomersToQueues(){
+        if(Reg1.size() < 5){
+            Reg1.add(checkOutCustomers.remove());
+        }
+        else if(Reg2.size() < 5){
+            Reg2.add(checkOutCustomers.remove());
+        }
+        else if(Reg3.size() < 5){
+            Reg3.add(checkOutCustomers.remove());
+        }
     }
     
     
     public void runSimulation(){
-        
+        //While there are still customers in line or in the queues
+        while(checkOutCustomers.isEmpty() == false && (Reg1.isEmpty() == false && Reg2.isEmpty() == false && Reg3.isEmpty() == false)){
+            
+            //Adds each customer to a queue (5 max per queue)
+            addCustomersToQueues();
+            //If queues are all full, customers wait in checkOutCustomers
+
+            //Decrement the processing time for each person being serviced at the top of the queue
+            decrementAllTopCustomers();
+
+            //If a customer is done being processed, they are poped off the queue and added to processed list
+            checkIfDone();
+            
+                
+            
+            
+
+
+        }
     }
         
     
