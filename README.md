@@ -6,11 +6,11 @@ Repository for CSCI 310 Java @ CMU
 <br>
 
 <h2>Assignment#1 is in the Assignment1 folder</h2>
+<p>Link to repository: https://github.com/Blackbird002/CSCI310-CMU-Fall2018/tree/master/Assignment1</p>
 
 <br>
 
-<p>The Kattis problem I solved is called "Egypt". Link:
-<a href="https://open.kattis.com/problems/egypt" target="_blank">Kattis Egypt Problem</a> </p>
+<p>The Kattis problem I solved is called "Egypt". Link: https://open.kattis.com/problems/egypt </p>
 
 <p>
     Kattis Result:
@@ -26,3 +26,5 @@ Repository for CSCI 310 Java @ CMU
     Junit test of the EgyptSolver class:
     <img src="EgyptSolverTest.PNG">
 </p>
+
+<p>Nice work!</p>
