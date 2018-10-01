@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.github.blackbird002.customerwaitsimulator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  *
@@ -15,7 +17,36 @@ package com.github.blackbird002.customerwaitsimulator;
  */
 public class WaitSimulator {
     
-    public static void main(String args[]){
+    //The check out register sections
+    public Queue<Customer> Reg1;
+    public Queue<Customer> Reg2;
+    public Queue<Customer> Reg3;
+    public LinkedList<Customer> checkedOutCustomers;
+    
+    //Customers to be checked out
+    public Queue<Customer> checkOutCustomers;
+    
+    //Default Constructor
+    public WaitSimulator(){
+        Reg1 = new LinkedList<>();
+        Reg2 = new LinkedList<>();
+        Reg3 = new LinkedList<>();
         
-    }  
+        checkOutCustomers = new LinkedList<>();
+        checkedOutCustomers = new LinkedList<>();
+        
+        for(int i = 0; i <= 20; i++)
+            checkOutCustomers.add(new Customer("Generic"));
+    }
+    
+    
+    public void runSimulation(){
+        
+    }
+        
+    
+    
+    
+    
 }
+
