@@ -61,7 +61,34 @@ public class CustomerTest {
         else
             test = false;
         
+        //Checks if greater or equal to lower boundary
         if(result >= lower)
+            test = true;
+        else
+            test = false;
+        
+        assertTrue(test);
+    }
+    
+    /**
+     * Test of generateProcTime method, of class Customer.
+     */
+    @Test
+    public void testGenerateProcTimeTest2() {
+        boolean test = false;
+        System.out.println("generateProcTime");
+        Customer instance = new Customer("Jimmy");
+        int upper = 300;
+        int lower = 60;
+        
+        //Checks if less than upper boundary 
+        if(instance.getProcTime() < upper)
+            test = true;
+        else
+            test = false;
+        
+        //Checks if greater or equal to lower boundary
+        if(instance.getProcTime() >= lower)
             test = true;
         else
             test = false;
