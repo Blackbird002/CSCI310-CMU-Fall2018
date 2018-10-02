@@ -100,13 +100,11 @@ public class CustomerTest {
      */
     @Test
     public void testGetName() {
-        System.out.println("getName");
-        Customer instance = new Customer();
-        String expResult = "";
+        System.out.println("Anna");
+        Customer instance = new Customer("Anna");
+        String expResult = "Anna";
         String result = instance.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -115,12 +113,10 @@ public class CustomerTest {
     @Test
     public void testGetProcTime() {
         System.out.println("getProcTime");
-        Customer instance = new Customer();
-        int expResult = 0;
+        Customer instance = new Customer("Jim", 120);
+        int expResult = 120;
         int result = instance.getProcTime();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -133,8 +129,6 @@ public class CustomerTest {
         int expResult = 0;
         int result = instance.getwaitedTime();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
