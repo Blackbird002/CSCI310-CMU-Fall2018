@@ -127,5 +127,16 @@ public class WaitSimulatorTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of addWaitingTime method, of class WaitSimulator.
+     */
+    @Test
+    public void testAddWaitingTime() {
+        System.out.println("addWaitingTime");
+        WaitSimulator instance = new WaitSimulator();
+        instance.addWaitingTime();
+        
+    }
     
 }
