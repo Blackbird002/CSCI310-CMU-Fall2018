@@ -45,10 +45,16 @@ public final class Customer {
     public String getName(){return name;}
     public int getProcTime(){return processingTime;}
     public int getwaitedTime(){return waitedTime;}
-    
+    public int getOriginalProc(){return originalProcTime;}
+
     public void decrementProcTime(){
         processingTime--;
     }
+
+    public void addWait(){
+        waitedTime++;
+    }
+    
     
     public int generateProcTime(){
         //Inclusive

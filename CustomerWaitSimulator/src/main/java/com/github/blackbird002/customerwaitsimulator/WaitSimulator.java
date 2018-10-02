@@ -25,7 +25,8 @@ public class WaitSimulator {
 
         
         for(int i = 0; i < sim.checkedOutCustomers.size(); ++i)
-            System.out.println(sim.checkedOutCustomers.get(i).getName());
+            System.out.println(sim.checkedOutCustomers.get(i).getName() + " waited: " + sim.checkedOutCustomers.get(i).getwaitedTime()
+             + " Processing Time: " + sim.checkedOutCustomers.get(i).getOriginalProc());
     }
     
     //The check out register sections
@@ -100,6 +101,25 @@ public class WaitSimulator {
                 Reg3.add(checkOutCustomers.remove());
             }
     }
+
+    public void addWaitingTime(){
+        //Adds 1 to wait time of customers in checkoutCustomers
+        if(!checkOutCustomers.isEmpty())
+            for(Customer cust : checkOutCustomers)
+                cust.addWait();
+
+        if(!Reg1.isEmpty())
+            for(Customer cust : Reg1)
+                cust.addWait();
+
+        if(!Reg2.isEmpty())
+            for(Customer cust : Reg2)
+                cust.addWait();
+
+        if(!Reg1.isEmpty())
+            for(Customer cust : Reg1)
+                cust.addWait();   
+    }
     
     
     public void runSimulation(){
@@ -115,6 +135,9 @@ public class WaitSimulator {
 
             //If a customer is done being processed, they are poped off the queue and added to processed list
             checkIfDone();
+
+            //Add 1 to waitedTime to all customers still waiting in checkOutCustomers queue
+            addWaitingTime();
             
         }
     }
