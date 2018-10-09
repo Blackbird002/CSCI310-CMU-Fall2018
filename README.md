@@ -16,7 +16,7 @@ Every time I am in the grocery store, I often think about how much time we spend
 Before the simulation starts, the generated customers are put int a big queue called checkOutCustomers. Then once the simulation starts, customers go to either Reg1, Reg2, or Reg3 cash register queues depending on which one is available. I set it so that each queue line is size 5 max. The customers get put into the cash registers queues by checking if Reg1, Reg2 and finally Reg3 are less than 5. Customers that are on top of the queue get their processing time decremented. Meanwhile, everyone’s wait time gets incremented every CPU tick. Once a customer is done being processed, (processing time is 0) they get popped out of the queue and added to the checkedOutCustomers linkedList. The simulation ends when all the customers are out of the checkOutCustomers queue, Reg1, Reg2, Reg3 cash register queues and all of them are in checkedOutCustomers. 
 
 **Testing the Customer class:**
-<img src="/CustomerWaitSimulator/CustomerClassTests.png">
+<img src="/CustomerWaitSimulator/CustomerClassTests.PNG">
 
 **Testing the WaitSimulator class:**
-<img src="/CustomerWaitSimulator/WaitSimulatorClassTests.png">
+<img src="/CustomerWaitSimulator/WaitSimulatorClassTests.PNG">
