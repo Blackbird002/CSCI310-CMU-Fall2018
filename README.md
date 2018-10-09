@@ -1,30 +1,12 @@
 # CSCI310-CMU-Fall2018
 Repository for CSCI 310 Java @ CMU
 
-<h2>Welcome to Riad Shash (Ray's) CSCI 310 - Java Code Repository Dr. MacEvoy!</h2>
-
+**Welcome to Riad Shash (Ray's) CSCI 310 - Java Code Repository Dr. MacEvoy!**
+<br>
+**Assignment#1 is in the Assignment1 (Kattis Problem) folder**
+Link to repository: https://github.com/Blackbird002/CSCI310-CMU-Fall2018/tree/master/Assignment1
 <br>
 
-<h2>Assignment#1 is in the Assignment1 folder</h2>
-<p>Link to repository: https://github.com/Blackbird002/CSCI310-CMU-Fall2018/tree/master/Assignment1</p>
+**Assignment#2 is in the Assignment2 (Collections) folder**
+Link to respository: https://github.com/Blackbird002/CSCI310-CMU-Fall2018/tree/master/CustomerWaitSimulator/src
 
-<br>
-
-<p>The Kattis problem I solved is called "Egypt". Link: https://open.kattis.com/problems/egypt </p>
-
-<p>
-    Kattis Result:
-    <img src="Kattis Results.JPG">
-</p>
-
-<p>
-    Junit test of the Egypt class (where main is located):
-    <img src="EgyptTest.PNG">
-</p>
-
-<p>
-    Junit test of the EgyptSolver class:
-    <img src="EgyptSolverTest.PNG">
-</p>
-
-<p>Nice work!</p>
