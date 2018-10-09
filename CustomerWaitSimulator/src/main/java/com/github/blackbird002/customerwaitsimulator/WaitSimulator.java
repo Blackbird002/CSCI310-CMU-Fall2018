@@ -114,8 +114,8 @@ public class WaitSimulator {
             for(Customer cust : Reg2)
                 cust.addWait();
 
-        if(!Reg1.isEmpty())
-            for(Customer cust : Reg1)
+        if(!Reg3.isEmpty())
+            for(Customer cust : Reg3)
                 cust.addWait();   
     }
     

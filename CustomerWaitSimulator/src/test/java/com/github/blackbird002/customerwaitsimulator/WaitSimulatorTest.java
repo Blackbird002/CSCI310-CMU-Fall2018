@@ -73,7 +73,6 @@ public class WaitSimulatorTest {
         
         if(instance.Reg3.peek().getProcTime() >= R3)
             test = false;
-        
 
         assertTrue(test);
     }
@@ -189,6 +188,8 @@ public class WaitSimulatorTest {
         int[] A2 = new int[5]; 
         int[] A3 = new int[5]; 
         int waiting[] = new int[20];
+
+        instance.addWaitingTime();
 
         int i = 0;
         for(Customer cust : instance.Reg1){
