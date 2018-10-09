@@ -45,11 +45,7 @@ public class WaitSimulatorTest {
      */
     @Test
     public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        //WaitSimulator.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -63,7 +59,7 @@ public class WaitSimulatorTest {
 
         int R1 = instance.Reg1.peek().getProcTime();
         int R2 = instance.Reg2.peek().getProcTime();
-        int R3 = instance.Reg1.peek().getProcTime();
+        int R3 = instance.Reg3.peek().getProcTime();
 
         instance.decrementAllTopCustomers();
 
@@ -89,9 +85,23 @@ public class WaitSimulatorTest {
     public void testCheckIfDone() {
         System.out.println("checkIfDone");
         WaitSimulator instance = new WaitSimulator();
+        instance.Reg1.add(new Customer("Ray",0));
+        instance.Reg2.add(new Customer("JR", 0));
+        instance.Reg3.add(new Customer("Sean", 0));
         instance.checkIfDone();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        boolean test = true;
+
+        if(!instance.Reg1.isEmpty())
+            test = false;
+        
+        if(!instance.Reg2.isEmpty())
+            test = false;
+
+        if(!instance.Reg3.isEmpty())
+            test = false;
+
+        assertTrue(test);
     }
 
     /**
@@ -145,8 +155,25 @@ public class WaitSimulatorTest {
         System.out.println("runSimulation");
         WaitSimulator instance = new WaitSimulator();
         instance.runSimulation();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        boolean test = true;
+
+        if(!instance.checkOutCustomers.isEmpty())
+            test = false;
+        
+        if(!instance.Reg1.isEmpty())
+            test = false;
+        
+        if(!instance.Reg2.isEmpty())
+             test = false;
+
+        if(!instance.Reg3.isEmpty())
+            test = false;
+
+        if(instance.checkedOutCustomers.isEmpty())
+            test = false;   
+        
+        assertTrue(test);
     }
 
     /**
@@ -221,7 +248,6 @@ public class WaitSimulatorTest {
             }
             ++i;
         }
-
         assertTrue(test);
     }
     
