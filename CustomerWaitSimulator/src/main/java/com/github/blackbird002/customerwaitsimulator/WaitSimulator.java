@@ -47,8 +47,6 @@ public class WaitSimulator {
         checkOutCustomers = new LinkedList<>();
         checkedOutCustomers = new LinkedList<>();
         
-        
-        
         for(int i = 0; i <= 20; i++)
             checkOutCustomers.add(new Customer("Customer " + Integer.toString(i)));
             
@@ -90,7 +88,7 @@ public class WaitSimulator {
     }
 
     public void addCustomersToQueues(){
-        while((Reg1.size() < 5 || Reg2.size() < 5 || Reg2.size() < 5) && !checkOutCustomers.isEmpty())
+        while((Reg1.size() < 5 || Reg2.size() < 5 || Reg3.size() < 5) && !checkOutCustomers.isEmpty())
             if(Reg1.size() < 5){
                 Reg1.add(checkOutCustomers.remove());
             }
@@ -124,7 +122,8 @@ public class WaitSimulator {
     
     public void runSimulation(){
         //While there are still customers in line or in the queues
-        while(checkOutCustomers.isEmpty() == false || Reg1.isEmpty() == false || Reg2.isEmpty() == false || Reg3.isEmpty() == false){
+        while(checkOutCustomers.isEmpty() == false || Reg1.isEmpty() == false || 
+        Reg2.isEmpty() == false || Reg3.isEmpty() == false){
             
             //Adds each customer to a queue (5 max per queue)
             addCustomersToQueues();

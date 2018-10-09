@@ -59,9 +59,27 @@ public class WaitSimulatorTest {
     public void testDecrementAllTopCustomers() {
         System.out.println("decrementAllTopCustomers");
         WaitSimulator instance = new WaitSimulator();
+        instance.addCustomersToQueues();
+
+        int R1 = instance.Reg1.peek().getProcTime();
+        int R2 = instance.Reg2.peek().getProcTime();
+        int R3 = instance.Reg1.peek().getProcTime();
+
         instance.decrementAllTopCustomers();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        boolean test = true;
+
+        if(instance.Reg1.peek().getProcTime() >= R1)
+            test = false;
+
+        if(instance.Reg2.peek().getProcTime() >= R2)
+            test = false;
+        
+        if(instance.Reg3.peek().getProcTime() >= R3)
+            test = false;
+        
+
+        assertTrue(test);
     }
 
     /**
