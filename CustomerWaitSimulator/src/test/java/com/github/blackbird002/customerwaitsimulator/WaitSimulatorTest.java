@@ -12,6 +12,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  *
  * @author riads
@@ -135,8 +138,73 @@ public class WaitSimulatorTest {
     public void testAddWaitingTime() {
         System.out.println("addWaitingTime");
         WaitSimulator instance = new WaitSimulator();
+        instance.addCustomersToQueues();
+
+        int[] A1 = new int[5]; 
+        int[] A2 = new int[5]; 
+        int[] A3 = new int[5]; 
+        int waiting[] = new int[20];
+
+        int i = 0;
+        for(Customer cust : instance.Reg1){
+            A1[i] = cust.getwaitedTime();
+            ++i;
+        }
+            
+        i = 0;
+        for(Customer cust : instance.Reg2){
+            A2[i] = cust.getwaitedTime();
+            ++i;
+        }
+            
+        i = 0;
+        for(Customer cust : instance.Reg3){
+            A3[i] = cust.getwaitedTime();
+            ++i;
+        }
+
+        i = 0;
+        for(Customer cust : instance.checkOutCustomers){
+            waiting[i] = cust.getwaitedTime();
+            ++i;
+        }
+
         instance.addWaitingTime();
-        
+        boolean test = true;
+
+        i = 0;
+        for(Customer cust : instance.Reg1){
+            if(cust.getwaitedTime() <= A1[i]){
+                test = false;
+            }
+            ++i;
+        }
+
+        i = 0;
+        for(Customer cust : instance.Reg2){
+            if(cust.getwaitedTime() <= A1[i]){
+                test = false;
+            }
+            ++i;
+        }
+
+        i = 0;
+        for(Customer cust : instance.Reg3){
+            if(cust.getwaitedTime() <= A3[i]){
+                test = false;
+            }
+            ++i;
+        }
+
+        i = 0;
+        for(Customer cust : instance.checkOutCustomers){
+            if(cust.getwaitedTime() <= waiting[i]){
+                test = false;
+            }
+            ++i;
+        }
+
+        assertTrue(test);
     }
     
 }
