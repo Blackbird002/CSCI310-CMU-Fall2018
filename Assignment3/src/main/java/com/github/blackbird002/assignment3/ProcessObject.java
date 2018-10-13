@@ -14,11 +14,22 @@ import java.util.LinkedList;
 public class ProcessObject {
     
     //A collection of strings indicating what thread added a string
-    LinkedList<String> visitedlist;
+    public LinkedList<String> visitedlist;
+    int processObjId;
+    
+    public int getId(){return processObjId;}
     
     //Default constructor
     public ProcessObject(){
         visitedlist = new LinkedList<String>();
+        processObjId = 0;
     }
+    
+    public ProcessObject(int inID){
+        visitedlist = new LinkedList<String>();
+        processObjId = inID;
+    }
+    
+    
         
 }
