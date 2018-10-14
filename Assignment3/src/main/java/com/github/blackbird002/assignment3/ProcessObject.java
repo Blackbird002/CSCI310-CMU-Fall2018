@@ -28,8 +28,5 @@ public class ProcessObject {
     public ProcessObject(int inID){
         visitedlist = new LinkedList<String>();
         processObjId = inID;
-    }
-    
-    
-        
+    }       
 }

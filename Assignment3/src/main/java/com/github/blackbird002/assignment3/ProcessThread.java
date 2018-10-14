@@ -30,6 +30,7 @@ public class ProcessThread implements Runnable {
             demo.objectsToProcess[index].visitedlist.add(inputStr);
         }
         
+        //I let the treads sleep to introduce some variation
         try{
             Thread.sleep(100);
         }
@@ -41,6 +42,8 @@ public class ProcessThread implements Runnable {
     public void start(){
         thrd.start();
     }
+    
+    
     
     @Override
     public void run() {

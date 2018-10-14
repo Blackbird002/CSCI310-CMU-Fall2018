@@ -28,7 +28,6 @@ public class Demonstration {
         //Create all the ProcessObjects
         for(int i = 0; i < 50; ++i){
             objectsToProcess[i] = new ProcessObject(i);
-            System.out.println("Created ProcessObject: " + objectsToProcess[i].getId());
         }
         
     }
@@ -44,8 +43,26 @@ public class Demonstration {
         thread3.start();
         thread4.start();
         
+        try{
+            thread1.thrd.join();
+            thread2.thrd.join();
+            thread3.thrd.join();
+            thread4.thrd.join();
+        }catch(InterruptedException exc){
+            System.out.println("A was thread interrupted.");
+        }
         
-    }
-    
-    
+        System.out.println("All threads joined! Only main thead is left.");
+        System.out.println("Printing the ProcessObj lists: ");
+        
+        int num = 1;
+        for (ProcessObject obj : objectsToProcess) {
+           System.out.println("Process Object: " + num);
+           num++;
+           for(String line : obj.visitedlist){
+               System.out.println(line);
+           }
+           System.out.println();
+        }
+    }   
 }
