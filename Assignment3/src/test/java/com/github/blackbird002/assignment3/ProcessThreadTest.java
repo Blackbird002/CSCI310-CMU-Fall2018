@@ -43,23 +43,44 @@ public class ProcessThreadTest {
     @Test
     public void testAddProcNote() {
         System.out.println("addProcNote");
+        Demonstration demo = new Demonstration();
+        
+        //Creates the thread, does not run it
+        ProcessThread instance = new ProcessThread("Child#1", demo);
         int index = 0;
-        ProcessThread instance = null;
         instance.addProcNote(index);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        String expected = "Thread Child#1 was here!";
+        assertEquals(expected, demo.objectsToProcess[0].visitedlist.peekFirst());
+        
     }
 
     /**
      * Test of start method, of class ProcessThread.
+     * I just a test to see if a thread is running.
      */
     @Test
     public void testStart() {
-        System.out.println("start");
-        ProcessThread instance = null;
+        System.out.println("addProcNote");
+        boolean test = false;
+        Demonstration demo = new Demonstration();
+        
+        ProcessThread instance = new ProcessThread("Child#1", demo);
+        
         instance.start();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        if(instance.thrd.isAlive()){
+            test = true;
+        }
+        assertTrue(test);
+        
+        //Wait for the thread to finish
+        try{
+            instance.thrd.join();
+        }catch(InterruptedException exc){
+            System.out.println("A was thread interrupted.");
+        }
+        
     }
 
     /**
@@ -67,11 +88,25 @@ public class ProcessThreadTest {
      */
     @Test
     public void testRun() {
-        System.out.println("run");
-        ProcessThread instance = null;
-        instance.run();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("addProcNote");
+        boolean test = false;
+        Demonstration demo = new Demonstration();
+        
+        ProcessThread instance = new ProcessThread("Child#1", demo);
+        
+        instance.start();
+        
+        if(instance.thrd.isAlive()){
+            test = true;
+        }
+        assertTrue(test);
+        
+        //Wait for the thread to finish
+        try{
+            instance.thrd.join();
+        }catch(InterruptedException exc){
+            System.out.println("A was thread interrupted.");
+        }
     }
     
 }
