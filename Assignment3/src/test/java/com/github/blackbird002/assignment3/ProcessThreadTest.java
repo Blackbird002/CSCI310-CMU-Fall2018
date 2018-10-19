@@ -54,6 +54,40 @@ public class ProcessThreadTest {
         assertEquals(expected, demo.objectsToProcess[0].visitedlist.peekFirst());
         
     }
+    
+    @Test
+    public void testAddProcNoteCase2() {
+        System.out.println("addProcNote");
+        Demonstration demo = new Demonstration();
+        
+        //Creates the thread, does not run it
+        ProcessThread instance1 = new ProcessThread("Child#1", demo);
+        ProcessThread instance2 = new ProcessThread("Child#2", demo);
+        ProcessThread instance3 = new ProcessThread("Child#3", demo);
+        ProcessThread instance4 = new ProcessThread("Child#4", demo);
+        
+        int index = 0;
+        instance1.addProcNote(index);
+        index++;
+        instance2.addProcNote(index);
+        index++;
+        instance3.addProcNote(index);
+        index++;
+        instance4.addProcNote(index);
+        
+        String expected = "Thread Child#1 was here!";
+        assertEquals(expected, demo.objectsToProcess[0].visitedlist.peekFirst());
+        
+        expected = "Thread Child#2 was here!";
+        assertEquals(expected, demo.objectsToProcess[1].visitedlist.peekFirst());
+        
+        expected = "Thread Child#3 was here!";
+        assertEquals(expected, demo.objectsToProcess[2].visitedlist.peekFirst());
+        
+        expected = "Thread Child#4 was here!";
+        assertEquals(expected, demo.objectsToProcess[3].visitedlist.peekFirst());    
+    }
+
 
     /**
      * Test of start method, of class ProcessThread.
@@ -80,7 +114,6 @@ public class ProcessThreadTest {
         }catch(InterruptedException exc){
             System.out.println("A was thread interrupted.");
         }
-        
     }
 
     /**
@@ -107,6 +140,5 @@ public class ProcessThreadTest {
         }catch(InterruptedException exc){
             System.out.println("A was thread interrupted.");
         }
-    }
-    
+    }  
 }

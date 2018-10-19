@@ -39,26 +39,63 @@ public class DemonstrationTest {
 
     /**
      * Test of main method, of class Demonstration.
+     * Not going to test this method 
      */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Demonstration.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    public void testMain(){}
 
     /**
      * Test of doDemonstration method, of class Demonstration.
      */
     @Test
     public void testDoDemonstration() {
+        boolean test = true;
         System.out.println("doDemonstration");
         Demonstration instance = new Demonstration();
         instance.doDemonstration();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+        
+        //Tests if all the threads are not alive
+        if(instance.thread1.thrd.isAlive() && instance.thread2.thrd.isAlive()
+           && instance.thread3.thrd.isAlive() && instance.thread4.thrd.isAlive())
+            test = false;
+        
+        assertTrue(test);
+        
+        int numPresent = 0;
+        int expNumPresent = 4;
+        for(String line : instance.objectsToProcess[0].visitedlist){
+               //Tests if each thread added a string to the visitedlist
+               assertTrue(line.startsWith("Thread Child"));  
+               numPresent++;
+        }
+        
+        assertEquals(expNumPresent,numPresent);  
+        numPresent = 0;
+        
+        for(String line : instance.objectsToProcess[1].visitedlist){
+               //Tests if each thread added a string to the visitedlist
+               assertTrue(line.startsWith("Thread Child"));  
+               numPresent++;
+        }
+        
+        assertEquals(expNumPresent,numPresent);  
+        numPresent = 0;
+        
+        for(String line : instance.objectsToProcess[2].visitedlist){
+               //Tests if each thread added a string to the visitedlist
+               assertTrue(line.startsWith("Thread Child"));  
+               numPresent++;
+        }
+        
+        assertEquals(expNumPresent,numPresent);  
+        numPresent = 0;
+        
+        for(String line : instance.objectsToProcess[3].visitedlist){
+               //Tests if each thread added a string to the visitedlist
+               assertTrue(line.startsWith("Thread Child"));  
+               numPresent++;
+        }
+        
+        assertEquals(expNumPresent,numPresent);  
+    }    
 }

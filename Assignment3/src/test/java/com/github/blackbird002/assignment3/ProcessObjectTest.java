@@ -66,8 +66,32 @@ public class ProcessObjectTest {
                numPresent++;
         }
         //Tests if 4 threads visited the object
-        assertEquals(expNumPresent,numPresent);
-           
-    }
-    
+        assertEquals(expNumPresent,numPresent);   
+        numPresent = 0;
+        
+        for(String line : demo.objectsToProcess[1].visitedlist){
+               //Tests if each thread added a string to the visitedlist
+               assertTrue(line.startsWith("Thread Child"));  
+               numPresent++;
+        }
+        
+        assertEquals(expNumPresent,numPresent);  
+        numPresent = 0;
+        
+        for(String line : demo.objectsToProcess[2].visitedlist){
+               //Tests if each thread added a string to the visitedlist
+               assertTrue(line.startsWith("Thread Child"));  
+               numPresent++;
+        }
+        
+        assertEquals(expNumPresent,numPresent);  
+        numPresent = 0;
+        
+        for(String line : demo.objectsToProcess[3].visitedlist){
+               //Tests if each thread added a string to the visitedlist
+               assertTrue(line.startsWith("Thread Child"));  
+               numPresent++;
+        }     
+        assertEquals(expNumPresent,numPresent);  
+    }    
 }
