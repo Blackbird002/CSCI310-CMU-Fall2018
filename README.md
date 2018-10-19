@@ -23,8 +23,26 @@ Before the simulation starts, the generated customers are put int a big queue ca
 <br>
 <img src="/CustomerWaitSimulator/WaitSimulatorClassTests.PNG">
 
-## Assignment#3 is in the CustomerWaitSimulator folder
+## Assignment#3 is in the Assignment3 folder
 Link to respository: https://github.com/Blackbird002/CSCI310-CMU-Fall2018/tree/master/Assignment3/src
+
+**Testing the Demonstration class:**
+<br>
+<img src="/Assignment3/TestResults/DemonstrationTests.PNG">
+
+**Testing the ProcessObject class:**
+<br>
+<img src="/Assignment3/TestResults/ProcessObjectTests.PNG">
+
+**Testing the ProcessThread class:**
+<br>
+<img src="/Assignment3/TestResults/ProcessThreadTest.PNG">
+
+
+
+       
+      
+
 
 
 
