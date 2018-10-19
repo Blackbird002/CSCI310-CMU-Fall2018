@@ -15,6 +15,9 @@ public class ProcessThread implements Runnable {
     Thread thrd;
     Demonstration demo;
     
+    long start;
+    long end;
+    
     //Construct the new thread
     ProcessThread(String name, Demonstration _demo){
         thrd = new Thread(this, name);
@@ -32,7 +35,7 @@ public class ProcessThread implements Runnable {
         
         //I let the treads sleep to introduce some variation
         try{
-            Thread.sleep(100);
+            Thread.sleep(50);
         }
         catch (InterruptedException exc){
             System.out.println("Thread interrupted.");
@@ -41,6 +44,7 @@ public class ProcessThread implements Runnable {
     
     public void start(){
         thrd.start();
+        start = System.currentTimeMillis();
     }
     
     
@@ -50,6 +54,9 @@ public class ProcessThread implements Runnable {
         for(int i = 0; i < demo.objectsToProcess.length; ++i){
             addProcNote(i);
         }
+        end = System.currentTimeMillis();
+        System.out.println("Thread " + thrd.getName() + " finished with a time of "
+                + (end-start));
     }
     
 }

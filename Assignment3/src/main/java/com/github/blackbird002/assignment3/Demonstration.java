@@ -11,18 +11,28 @@ package com.github.blackbird002.assignment3;
  */
 public class Demonstration {
     
+    public ProcessThread thread1;
+    public ProcessThread thread2;
+    public ProcessThread thread3;
+    public ProcessThread thread4;
+     public ProcessObject[] objectsToProcess;
+    
     public static void main(String args[]){
+       System.out.println("==================================================");
        Demonstration firstDemo = new Demonstration();
        
        firstDemo.doDemonstration();
         
     }
     
-    public ProcessObject[] objectsToProcess;
-    public long start;
-    public long end;
-    
     public Demonstration(){
+        //Create 4 threads
+        thread1 = new ProcessThread("Child#1", this);
+        thread2 = new ProcessThread("Child#2", this);
+        thread3 = new ProcessThread("Child#3", this);
+        thread4 = new ProcessThread("Child#4", this);
+        
+        //Create the array of process objects
         objectsToProcess = new ProcessObject[50]; 
         
         //Create all the ProcessObjects
@@ -32,12 +42,10 @@ public class Demonstration {
         
     }
     
-    public void doDemonstration(){
-        ProcessThread thread1 = new ProcessThread("Child#1", this);
-        ProcessThread thread2 = new ProcessThread("Child#2", this);
-        ProcessThread thread3 = new ProcessThread("Child#3", this);
-        ProcessThread thread4 = new ProcessThread("Child#4", this);
+    //Method that does the action
+    public void doDemonstration(){      
         
+        //Start the threads
         thread1.start();
         thread2.start();
         thread3.start();
@@ -52,16 +60,14 @@ public class Demonstration {
             System.out.println("A was thread interrupted.");
         }
         
-        System.out.println("All threads joined! Only main thead is left.");
+        System.out.println("All threads joined! Only main thread is left.");
         System.out.println("Printing the ProcessObj lists: ");
         
         int num = 1;
         for (ProcessObject obj : objectsToProcess) {
            System.out.println("Process Object: " + num);
            num++;
-           for(String line : obj.visitedlist){
-               System.out.println(line);
-           }
+           obj.printVisitedList();
            System.out.println();
         }
     }   

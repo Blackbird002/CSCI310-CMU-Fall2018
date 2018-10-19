@@ -15,9 +15,15 @@ public class ProcessObject {
     
     //A collection of strings indicating what thread added a string
     public LinkedList<String> visitedlist;
-    int processObjId;
+    public int processObjId;
     
     public int getId(){return processObjId;}
+    
+    public void printVisitedList(){
+        for(String line : visitedlist)
+               System.out.println(line);
+        System.out.println();
+    }
     
     //Default constructor
     public ProcessObject(){
