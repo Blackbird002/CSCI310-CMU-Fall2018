@@ -40,7 +40,7 @@ public class EmployeeDB {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        } 
     }
     
     private Connection connect() {
@@ -53,11 +53,29 @@ public class EmployeeDB {
         System.out.println("Connected to Employee Database!");
         return con;
     }
+
+    public void createNewTable() {
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS EMPLOYEES( "
+                + " ID             INT PRIMARY KEY NOT NULL, "
+                + " NAME           TEXT            NOT NULL, "
+                + " AGE            INT             NOT NULL, "
+                + " SALARY         REAL            NOT NULL, "
+                + " POSITION       TEXT            NOT NULL) ";
+
+        try (Connection con = connect();
+                Statement stmt = con.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Emplyee Table is created!");
+    }
+    
     
     private void runTest(){
         createNewDatabase();
+        createNewTable();
     }
-
-
-    
 }
