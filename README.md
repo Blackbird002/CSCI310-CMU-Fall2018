@@ -23,8 +23,29 @@ Before the simulation starts, the generated customers are put int a big queue ca
 <br>
 <img src="/CustomerWaitSimulator/WaitSimulatorClassTests.PNG">
 
-## Assignment#3 is in the CustomerWaitSimulator folder
+## Assignment#3 is in the Assignment3 folder
 Link to respository: https://github.com/Blackbird002/CSCI310-CMU-Fall2018/tree/master/Assignment3/src
+
+**Idea:**
+My idea was to create scenario where 4 threads (ProcessThreads) are started at the same time and their task is to add a string into a linked list in ProcessObjects. The demonstration class has an array of these process objects. Each thread has to visit every ProcessObject and add a string into the linked list. The string goes like this: “Thread Child#2 was here!” where the child # is the thread #. I use the synchronized block to make sure that no 1+ threads can modify the same ProcessObject in the array at the same time.
+
+**Testing the Demonstration class:**
+<br>
+<img src="/Assignment3/TestResults/DemonstrationTests.PNG">
+
+**Testing the ProcessObject class:**
+<br>
+<img src="/Assignment3/TestResults/ProcessObjectTests.PNG">
+
+**Testing the ProcessThread class:**
+<br>
+<img src="/Assignment3/TestResults/ProcessThreadTests.PNG">
+
+
+
+       
+      
+
 
 
 
