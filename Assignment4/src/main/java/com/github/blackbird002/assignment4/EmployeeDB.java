@@ -164,13 +164,38 @@ public class EmployeeDB {
         }   
     }
 
+    public void updateEmployee(int id, String name, int age, float salary, String position){
+        String sql = "UPDATE EMPLOYEES set "
+                    + " NAME = " + "'" + name + "'" + ","
+                    + " AGE = " + age + ","
+                    + " SALARY = " + salary + ","
+                    + " POSITION = " + "'" + position + "'"
+                    + " where ID = " + id + ";";
+                
+        try (Connection con = connect();
+            Statement stmt = con.createStatement()) {
+            
+            //Update the record
+            stmt.executeUpdate(sql);
+            System.out.println("Employee with id: " + id + " updated!");
 
+            //Print database to show changes
+            readDatabase();
+
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }   
+    }
     
     private void runTest(){
         createNewDatabase();
         createNewTable();
         insertEmployee(0,"RAY",24,30000,"Worker");
-        insertEmployee(2,"Chey",19,3500,"Worker");
+        updateEmployee(0,"Gray",25,25000, "Worker");
+        insertEmployee(2,"Chewy",19,3500,"Worker");
         readDatabase();
         deleteEmployee(0);
         deleteEmployee(2);
