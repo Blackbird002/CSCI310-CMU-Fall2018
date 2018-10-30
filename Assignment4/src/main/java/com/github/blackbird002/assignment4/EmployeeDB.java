@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -54,6 +55,7 @@ public class EmployeeDB {
         return con;
     }
 
+    //Creates the table for Employees
     public void createNewTable() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS EMPLOYEES( "
@@ -72,10 +74,71 @@ public class EmployeeDB {
         }
         System.out.println("Emplyee Table is created!");
     }
-    
+
+    public void readDatabase(){
+        //Displays all the records in the EMPOYEES table
+        String sql = "SELECT * FROM EMPLOYEES;";
+        try (Connection con = connect();
+            Statement stmt = con.createStatement()) {
+            
+            //Execute the query and store in ResultSet
+            ResultSet resultsFromQuery = stmt.executeQuery(sql);
+
+            while(resultsFromQuery.next()){
+                System.out.println();
+
+                //Get the information from the record
+                int id = resultsFromQuery.getInt("ID");
+                String name = resultsFromQuery.getString("NAME");
+                int age = resultsFromQuery.getInt("AGE");
+                float salary = resultsFromQuery.getFloat("SALARY");
+                String position = resultsFromQuery.getString("POSITION");
+
+                //Prints to terminal
+                System.out.println("ID: " + id);
+                System.out.println("NAME: " + name);
+                System.out.println("AGE: " + age);
+                System.out.println("SALARY: " + salary);
+                System.out.println("POSITION: " + position);  
+            }
+            
+            //Close everything!
+            resultsFromQuery.close();
+            stmt.close();
+            con.close();
+
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println();
+        System.out.println("No more records!");
+    }
+
+    public void insertEmployee(int id, String name, int age, float salary, String position){
+        String sql = "INSERT INTO EMPLOYEES (ID, NAME, AGE, SALARY, POSITION)" + 
+                    "VALUES ("
+                    + "'" +  id + "'" + "," 
+                    + "'" +  name + "'" + ","
+                    + age + ","
+                    + salary + ","
+                    + "'" +  position + "'" + ");";
+
+        try (Connection con = connect();
+            Statement stmt = con.createStatement()) {
+            
+            //Add the record
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Emplyee added!");
+    }
     
     private void runTest(){
         createNewDatabase();
         createNewTable();
+        insertEmployee(1,"JR",30,60000,"Manager");
+        readDatabase();
     }
 }
