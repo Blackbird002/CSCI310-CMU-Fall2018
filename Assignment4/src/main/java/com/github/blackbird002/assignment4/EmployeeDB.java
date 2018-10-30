@@ -9,7 +9,11 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 /**
- *
+ * Implementation of C.R.U.D using SQLite database
+ * C - Create -> createNewDatase & createNewTable & insertEmplyee
+ * R - Read -> readDatabase
+ * U - Update ->
+ * D - Delete -> deleteEmployee
  * @author riads
  */
 public class EmployeeDB {
@@ -35,8 +39,8 @@ public class EmployeeDB {
         try (Connection con = connect()) {
             if (con != null) {
                 DatabaseMetaData meta = con.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
+                //System.out.println("The driver name is " + meta.getDriverName());
+                //System.out.println("A new database has been created.");
             }
 
         } catch (SQLException e) {
@@ -51,7 +55,7 @@ public class EmployeeDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Connected to Employee Database!");
+        //System.out.println("Connected to Employee Database!");
         return con;
     }
 
@@ -72,7 +76,7 @@ public class EmployeeDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Emplyee Table is created!");
+        System.out.println("Emplyee Table is active!");
     }
 
     public void readDatabase(){
@@ -129,16 +133,46 @@ public class EmployeeDB {
             
             //Add the record
             stmt.executeUpdate(sql);
+
+            stmt.close();
+            con.close();
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Emplyee added!");
+        System.out.println("Emplyee " + name + " added!");
     }
+
+    public void deleteEmployee(int id){
+        String sql = "DELETE from EMPLOYEES where ID = "
+                    + id + ";";
+        try (Connection con = connect();
+            Statement stmt = con.createStatement()) {
+            
+            //Remove the record
+            stmt.executeUpdate(sql);
+            System.out.println("Emplyee with ID: " + id + " deleted!");
+
+            //Print database to show changes
+            readDatabase();
+
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }   
+    }
+
+
     
     private void runTest(){
         createNewDatabase();
         createNewTable();
-        insertEmployee(1,"JR",30,60000,"Manager");
+        insertEmployee(0,"RAY",24,30000,"Worker");
+        insertEmployee(2,"Chey",19,3500,"Worker");
         readDatabase();
+        deleteEmployee(0);
+        deleteEmployee(2);
     }
 }
