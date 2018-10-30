@@ -35,7 +35,7 @@ public class EmployeeDB {
         new EmployeeDB().runTest();
     }
     
-    public void createNewDatabase() {
+    private void createNewDatabase() {
         try (Connection con = connect()) {
             if (con != null) {
                 DatabaseMetaData meta = con.getMetaData();
@@ -48,7 +48,7 @@ public class EmployeeDB {
         } 
     }
     
-    private Connection connect() {
+    public Connection connect() {
         Connection con = null;
         try {
             con = DriverManager.getConnection(DEFAULT_URL);
@@ -60,7 +60,7 @@ public class EmployeeDB {
     }
 
     //Creates the table for Employees
-    public void createNewTable() {
+    private void createNewTable() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS EMPLOYEES( "
                 + " ID             INT PRIMARY KEY NOT NULL, "
@@ -120,19 +120,19 @@ public class EmployeeDB {
     }
 
     public void insertEmployee(int id, String name, int age, float salary, String position){
-        String sql = "INSERT INTO EMPLOYEES (ID, NAME, AGE, SALARY, POSITION)" + 
-                    "VALUES ("
-                    + "'" +  id + "'" + "," 
-                    + "'" +  name + "'" + ","
-                    + age + ","
-                    + salary + ","
-                    + "'" +  position + "'" + ");";
-
+        String sql = "INSERT INTO EMPLOYEES (ID, NAME, AGE, SALARY, POSITION) VALUES(?,?,?,?,?)";
+                    
         try (Connection con = connect();
-            Statement stmt = con.createStatement()) {
+            PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            stmt.setString(2, name);
+            stmt.setInt(3, age);
+            stmt.setFloat(4, salary);
+            stmt.setString(5, position);
             
             //Add the record
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate();
 
             stmt.close();
             con.close();
@@ -165,18 +165,24 @@ public class EmployeeDB {
     }
 
     public void updateEmployee(int id, String name, int age, float salary, String position){
-        String sql = "UPDATE EMPLOYEES set "
-                    + " NAME = " + "'" + name + "'" + ","
-                    + " AGE = " + age + ","
-                    + " SALARY = " + salary + ","
-                    + " POSITION = " + "'" + position + "'"
-                    + " where ID = " + id + ";";
+        String sql = "UPDATE EMPLOYEES SET"
+                    + " NAME = ?" + " ,"
+                    + " AGE = ?" + " ,"
+                    + " SALARY = ?" + " ,"
+                    + " POSITION = ?"
+                    + " WHERE ID = ?";
                 
         try (Connection con = connect();
-            Statement stmt = con.createStatement()) {
+            PreparedStatement stmt = con.prepareStatement(sql)) {
             
             //Update the record
-            stmt.executeUpdate(sql);
+            stmt.setString(1, name);
+            stmt.setInt(2, age);
+            stmt.setFloat(3, salary);
+            stmt.setString(4, position);
+            stmt.setInt(5, id);
+
+            stmt.executeUpdate();
             System.out.println("Employee with id: " + id + " updated!");
 
             //Print database to show changes
@@ -193,11 +199,14 @@ public class EmployeeDB {
     private void runTest(){
         createNewDatabase();
         createNewTable();
-        insertEmployee(0,"RAY",24,30000,"Worker");
-        updateEmployee(0,"Gray",25,25000, "Worker");
-        insertEmployee(2,"Chewy",19,3500,"Worker");
+        insertEmployee(0,"Ray",24,36000,"Programmer");
+        insertEmployee(1,"Joe",23,36000,"Programmer");
+        insertEmployee(2,"Chewy",20,36000,"Programmer");
+        insertEmployee(3,"JR",30,40000,"Manager");
+        updateEmployee(0,"Ray",24,38000,"Programmer");
+        
+        
+        //Print all the record in Employee table
         readDatabase();
-        deleteEmployee(0);
-        deleteEmployee(2);
     }
 }
