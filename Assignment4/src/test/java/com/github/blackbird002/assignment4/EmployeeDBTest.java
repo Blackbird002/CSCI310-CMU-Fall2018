@@ -5,6 +5,11 @@
  */
 package com.github.blackbird002.assignment4;
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,50 +44,41 @@ public class EmployeeDBTest {
 
     /**
      * Test of main method, of class EmployeeDB.
+     * No need to test main...
      */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        EmployeeDB.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of createNewDatabase method, of class EmployeeDB.
-     */
-    @Test
-    public void testCreateNewDatabase() {
-        System.out.println("createNewDatabase");
-        EmployeeDB instance = new EmployeeDB();
-        instance.createNewDatabase();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of createNewTable method, of class EmployeeDB.
-     */
-    @Test
-    public void testCreateNewTable() {
-        System.out.println("createNewTable");
-        EmployeeDB instance = new EmployeeDB();
-        instance.createNewTable();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    public void testMain() {}
 
     /**
      * Test of readDatabase method, of class EmployeeDB.
      */
     @Test
     public void testReadDatabase() {
+        boolean test = false;
+        //Prints all the database records to the terminal
         System.out.println("readDatabase");
         EmployeeDB instance = new EmployeeDB();
         instance.readDatabase();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        try (Connection con = instance.connect();
+            Statement stmt = con.createStatement()) {
+                    
+            if(con != null)
+                test = true;
+            else
+                test = false;          
+            
+            //Close everything!
+            stmt.close();
+            con.close();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        assertTrue(test);
+        
+        
     }
 
     /**
@@ -90,16 +86,62 @@ public class EmployeeDBTest {
      */
     @Test
     public void testInsertEmployee() {
+        boolean test = false;
         System.out.println("insertEmployee");
-        int id = 0;
-        String name = "";
-        int age = 0;
-        float salary = 0.0F;
-        String position = "";
+        int id = 12;
+        String name = "JOE";
+        int age = 23;
+        float salary = 18000;
+        String position = "Clerk";
         EmployeeDB instance = new EmployeeDB();
         instance.insertEmployee(id, name, age, salary, position);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        String sql = "SELECT * FROM EMPLOYEES where ID = 12;";
+        try (Connection con = instance.connect();
+            Statement stmt = con.createStatement()) {
+            
+            //Execute the query and store in ResultSet
+            ResultSet resultsFromQuery = stmt.executeQuery(sql);
+            
+            int tid = resultsFromQuery.getInt("ID");
+            String tname = "";
+            int tage = 0;
+            float tsalary = 0;
+            String tposition = "";
+
+            while(resultsFromQuery.next()){
+                System.out.println();
+
+                //Get the information from the record
+                tid = resultsFromQuery.getInt("ID");
+                tname = resultsFromQuery.getString("NAME");
+                tage = resultsFromQuery.getInt("AGE");
+                tsalary = resultsFromQuery.getFloat("SALARY");
+                tposition = resultsFromQuery.getString("POSITION");
+            }
+            
+            System.out.println("id = " + id + " tid = " + tid);
+            System.out.println("name = " + name + " tname = " + tname);
+            System.out.println("age = " + age + " tage = " + tage);
+            System.out.println("salary = " + salary + " tname = " + tsalary);
+            System.out.println("position = " + position + " tposition = " + tposition);
+            
+            if(id == tid)
+                test = true;
+            else
+                test = false;
+            
+            //Close everything!
+            resultsFromQuery.close();
+            stmt.close();
+            con.close();
+
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        assertTrue(test);
     }
 
     /**
