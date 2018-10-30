@@ -62,6 +62,7 @@ public class EmployeeDBTest {
         
         //The employee ID that we will check to see if in table
         int id = 0;
+        float salary = 38000.0f;
         
         String sql = "SELECT * FROM EMPLOYEES where ID = 0;";
         try (Connection con = instance.connect();
@@ -71,6 +72,7 @@ public class EmployeeDBTest {
             ResultSet resultsFromQuery = stmt.executeQuery(sql);
             
             int tid = resultsFromQuery.getInt("ID");
+            float tsalary = resultsFromQuery.getFloat("SALARY");
             
             while(resultsFromQuery.next()){
                 System.out.println();
@@ -78,7 +80,7 @@ public class EmployeeDBTest {
                 //Get the information from the record
                 tid = resultsFromQuery.getInt("ID");
                
-                if(tid == id)
+                if(tid == id && tsalary == salary)
                     test = true;
             }
             
@@ -94,6 +96,51 @@ public class EmployeeDBTest {
         assertTrue(test);       
     }
 
+    @Test
+    public void testReadDatabaseCase2() {
+        boolean test = false;
+        //Prints all the database records to the terminal
+        System.out.println("readDatabase");
+        EmployeeDB instance = new EmployeeDB();
+        instance.readDatabase();
+        
+        //The employee ID that we will check to see if in table
+        int id = 3;
+        float salary = 40000.0f;
+        
+        String sql = "SELECT * FROM EMPLOYEES where ID = 3;";
+        try (Connection con = instance.connect();
+            Statement stmt = con.createStatement()) {
+            
+            //Execute the query and store in ResultSet
+            ResultSet resultsFromQuery = stmt.executeQuery(sql);
+            
+            int tid = resultsFromQuery.getInt("ID");
+            float tsalary = resultsFromQuery.getFloat("SALARY");
+            
+            while(resultsFromQuery.next()){
+                System.out.println();
+
+                //Get the information from the record
+                tid = resultsFromQuery.getInt("ID");
+               
+                if(tid == id && tsalary == salary)
+                    test = true;
+            }
+            
+            //Close everything!
+            resultsFromQuery.close();
+            stmt.close();
+            con.close();
+
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }   
+        assertTrue(test);       
+    }
+
+
     /**
      * Test of insertEmployee method, of class EmployeeDB.
      */
@@ -107,6 +154,7 @@ public class EmployeeDBTest {
         float salary = 18000;
         String position = "Intern";
         EmployeeDB instance = new EmployeeDB();
+        
         instance.insertEmployee(id, name, age, salary, position);
         
         String sql = "SELECT * FROM EMPLOYEES where ID = 12;";
@@ -199,6 +247,60 @@ public class EmployeeDBTest {
 
         assertTrue(test);
     }
+    
+    @Test
+    public void testDeleteEmployeeCase2() {
+        boolean test = true;
+        System.out.println("deleteEmployee");
+        EmployeeDB instance = new EmployeeDB();
+
+        int id = 30;
+        String name = "Alex";
+        int age = 27;
+        float salary = 100000;
+        String position = "Programmer";
+
+        //We add the employee
+        instance.insertEmployee(id, name, age, salary, position);
+
+        //Then we remove the employee with id
+        instance.deleteEmployee(id);
+
+        //Now we check if there emplyee is not in the dataase
+        String sql = "SELECT * FROM EMPLOYEES;";
+        try (Connection con = instance.connect();
+            Statement stmt = con.createStatement()) {
+            
+            //Execute the query and store in ResultSet
+            ResultSet resultsFromQuery = stmt.executeQuery(sql);
+
+            int tid = 0;
+
+            while(resultsFromQuery.next()){
+                System.out.println();
+
+                //Get the information from the record
+                tid = resultsFromQuery.getInt("ID");    
+
+                //If we see the record again.. we fail this test
+                if(tid == id)
+                    test = false;
+            }
+            
+            //Close everything!
+            resultsFromQuery.close();
+            stmt.close();
+            con.close();
+
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println();
+        System.out.println("No more records!");
+
+        assertTrue(test);
+    }
 
     /**
      * Test of updateEmployee method, of class EmployeeDB.
@@ -211,7 +313,7 @@ public class EmployeeDBTest {
         int id = 20;
         String name = "Spock";
         int age = 150;
-        float salary = 90000;
+        float salary = 90000.0f;
         String position = "Chief Scientist";
 
         EmployeeDB instance = new EmployeeDB();
@@ -220,7 +322,7 @@ public class EmployeeDBTest {
         instance.insertEmployee(id, name, age, salary, position);
 
         //We increased Spock's salary
-        instance.updateEmployee(id, name, age, 120000, position);
+        instance.updateEmployee(id, name, age, 120000.0f, position);
 
         String sql = "SELECT * FROM EMPLOYEES where ID = 20;";
         try (Connection con = instance.connect();
@@ -232,17 +334,15 @@ public class EmployeeDBTest {
             int tid = 0;
             float tsalary = 0;
 
-            while(resultsFromQuery.next()){
-
-                //Get the information from the record
-                tid = resultsFromQuery.getInt("ID");
-                tsalary = resultsFromQuery.getFloat("SALARY");
-            }
+            //Get the information from the record
+            tid = resultsFromQuery.getInt("ID");
+            tsalary = resultsFromQuery.getFloat("SALARY");
             
-            System.out.println(id + " " + tid);
-            System.out.println(salary + " " + tsalary);
+            System.out.println("tsalary is: " + tsalary);
             
-            if(id == tid && tsalary == 120000.0)
+            
+            //Chekcs if the salary was updated
+            if(id == tid && tsalary == 120000.0f)
                 test = true;
             else
                 test = false;
@@ -262,5 +362,33 @@ public class EmployeeDBTest {
 
         assertTrue(test);
     }
-    
+
+    /**
+     * Test of connect method, of class EmployeeDB.
+     * We will just test if the connection is not null
+     */
+    @Test
+    public void testConnect() {
+        boolean test = false;
+        System.out.println("connect");
+        EmployeeDB instance = new EmployeeDB();
+
+        try (Connection con = instance.connect();
+            Statement stmt = con.createStatement()) {
+            
+            if(con.isValid(1) && con != null)
+                test = true;
+            else
+                test = false;
+
+            //Close everything!
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }   
+        assertTrue(test);    
+        
+    }
 }
