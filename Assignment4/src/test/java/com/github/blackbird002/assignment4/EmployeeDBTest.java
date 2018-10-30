@@ -149,12 +149,48 @@ public class EmployeeDBTest {
      */
     @Test
     public void testDeleteEmployee() {
+        boolean test = true;
         System.out.println("deleteEmployee");
-        int id = 0;
+        int id = 11;
         EmployeeDB instance = new EmployeeDB();
+
+        //We remove the employee with id
         instance.deleteEmployee(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        //Now we check if there emplyee is not in the dataase
+        String sql = "SELECT * FROM EMPLOYEES;";
+        try (Connection con = instance.connect();
+            Statement stmt = con.createStatement()) {
+            
+            //Execute the query and store in ResultSet
+            ResultSet resultsFromQuery = stmt.executeQuery(sql);
+
+            int tid = 0;
+
+            while(resultsFromQuery.next()){
+                System.out.println();
+
+                //Get the information from the record
+                tid = resultsFromQuery.getInt("ID");    
+
+                //If we see the record again.. we fail this test
+                if(tid == id)
+                    test = false;
+            }
+            
+            //Close everything!
+            resultsFromQuery.close();
+            stmt.close();
+            con.close();
+
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println();
+        System.out.println("No more records!");
+
+        assertTrue(test);
     }
 
     /**
