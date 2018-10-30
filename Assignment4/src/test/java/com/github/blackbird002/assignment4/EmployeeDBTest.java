@@ -198,16 +198,63 @@ public class EmployeeDBTest {
      */
     @Test
     public void testUpdateEmployee() {
+        boolean test = false;
+
         System.out.println("updateEmployee");
-        int id = 0;
-        String name = "";
-        int age = 0;
-        float salary = 0.0F;
-        String position = "";
+        int id = 20;
+        String name = "Spock";
+        int age = 150;
+        float salary = 90000;
+        String position = "Chief Scientist";
+
         EmployeeDB instance = new EmployeeDB();
-        instance.updateEmployee(id, name, age, salary, position);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        //We add Spock to the database
+        instance.insertEmployee(id, name, age, salary, position);
+
+        //We increased Spock's salary
+        instance.updateEmployee(id, name, age, 120000, position);
+
+        String sql = "SELECT * FROM EMPLOYEES where ID = 20;";
+        try (Connection con = instance.connect();
+            Statement stmt = con.createStatement()) {
+            
+            //Execute the query and store in ResultSet
+            ResultSet resultsFromQuery = stmt.executeQuery(sql);
+            
+            int tid = 0;
+            float tsalary = 0;
+
+            while(resultsFromQuery.next()){
+
+                //Get the information from the record
+                tid = resultsFromQuery.getInt("ID");
+                tsalary = resultsFromQuery.getFloat("SALARY");
+            }
+            
+            System.out.println(id + " " + tid);
+            System.out.println(salary + " " + tsalary);
+            
+            if(id == tid && tsalary == 120000.0)
+                test = true;
+            else
+                test = false;
+            
+            //Close everything!
+            resultsFromQuery.close();
+            stmt.close();
+            con.close();
+
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } 
+        
+        //Delete Spock employee so we can test again
+        instance.deleteEmployee(id);
+
+        assertTrue(test);
+
     }
     
 }
