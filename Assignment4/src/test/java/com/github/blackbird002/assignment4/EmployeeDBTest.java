@@ -60,25 +60,38 @@ public class EmployeeDBTest {
         EmployeeDB instance = new EmployeeDB();
         instance.readDatabase();
         
+        //The employee ID that we will check to see if in table
+        int id = 0;
+        
+        String sql = "SELECT * FROM EMPLOYEES where ID = 0;";
         try (Connection con = instance.connect();
             Statement stmt = con.createStatement()) {
-                    
-            if(con != null)
-                test = true;
-            else
-                test = false;          
+            
+            //Execute the query and store in ResultSet
+            ResultSet resultsFromQuery = stmt.executeQuery(sql);
+            
+            int tid = resultsFromQuery.getInt("ID");
+            
+            while(resultsFromQuery.next()){
+                System.out.println();
+
+                //Get the information from the record
+                tid = resultsFromQuery.getInt("ID");
+               
+                if(tid == id)
+                    test = true;
+            }
             
             //Close everything!
+            resultsFromQuery.close();
             stmt.close();
             con.close();
+
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
-        
-        assertTrue(test);
-        
-        
+        }   
+        assertTrue(test);       
     }
 
     /**
@@ -89,10 +102,10 @@ public class EmployeeDBTest {
         boolean test = false;
         System.out.println("insertEmployee");
         int id = 12;
-        String name = "JOE";
+        String name = "John Doe";
         int age = 23;
         float salary = 18000;
-        String position = "Clerk";
+        String position = "Intern";
         EmployeeDB instance = new EmployeeDB();
         instance.insertEmployee(id, name, age, salary, position);
         
@@ -103,28 +116,14 @@ public class EmployeeDBTest {
             //Execute the query and store in ResultSet
             ResultSet resultsFromQuery = stmt.executeQuery(sql);
             
-            int tid = resultsFromQuery.getInt("ID");
-            String tname = "";
-            int tage = 0;
-            float tsalary = 0;
-            String tposition = "";
+            int tid = 0;
 
             while(resultsFromQuery.next()){
                 System.out.println();
 
                 //Get the information from the record
                 tid = resultsFromQuery.getInt("ID");
-                tname = resultsFromQuery.getString("NAME");
-                tage = resultsFromQuery.getInt("AGE");
-                tsalary = resultsFromQuery.getFloat("SALARY");
-                tposition = resultsFromQuery.getString("POSITION");
             }
-            
-            System.out.println("id = " + id + " tid = " + tid);
-            System.out.println("name = " + name + " tname = " + tname);
-            System.out.println("age = " + age + " tage = " + tage);
-            System.out.println("salary = " + salary + " tname = " + tsalary);
-            System.out.println("position = " + position + " tposition = " + tposition);
             
             if(id == tid)
                 test = true;
@@ -136,11 +135,11 @@ public class EmployeeDBTest {
             stmt.close();
             con.close();
 
-            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+        //Delete the added Employee so test can run again
+        instance.deleteEmployee(12);
         assertTrue(test);
     }
 
@@ -151,10 +150,18 @@ public class EmployeeDBTest {
     public void testDeleteEmployee() {
         boolean test = true;
         System.out.println("deleteEmployee");
-        int id = 11;
         EmployeeDB instance = new EmployeeDB();
 
-        //We remove the employee with id
+        int id = 11;
+        String name = "Sean";
+        int age = 21;
+        float salary = 100000;
+        String position = "Programmer";
+
+        //We add the employee
+        instance.insertEmployee(id, name, age, salary, position);
+
+        //Then we remove the employee with id
         instance.deleteEmployee(id);
 
         //Now we check if there emplyee is not in the dataase
@@ -254,7 +261,6 @@ public class EmployeeDBTest {
         instance.deleteEmployee(id);
 
         assertTrue(test);
-
     }
     
 }
