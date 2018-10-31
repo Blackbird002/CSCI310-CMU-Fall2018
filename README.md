@@ -43,7 +43,26 @@ My idea was to create scenario where 4 threads (ProcessThreads) are started at t
 
 ## Assignment#4 is in the Assignment4 folder
 Link to repository: https://github.com/Blackbird002/CSCI310-CMU-Fall2018/tree/master/Assignment4/src
-**Idea:**
+
+**Description:**
+Implementation of basic C.R.U.D functionality with Java & SQLite and tested with 8 Junit tests. I made a database called Employees.db with a table called Employees. Each employee record has:
+```
+ID (Primary key) - INT
+NAME             - TEXT
+AGE              - INT
+SALARY           - REAL
+POSITION         - TEXT
+```
+**Testing the EmployeeDB class:**
+<br>
+<img src="/Assignment4/TestResults/EmployeeDBTests.PNG">
+
+        
+      
+
+
+
+
        
       
 
