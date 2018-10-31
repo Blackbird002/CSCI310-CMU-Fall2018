@@ -56,6 +56,13 @@ POSITION         - TEXT
 **Testing the EmployeeDB class:**
 <br>
 <img src="/Assignment4/TestResults/EmployeeDBTests.PNG">
+<br>
+
+**Output if runTest() is called:**
+<br>
+<img src="/Assignment4/Code.PNG">
+<br>
+<img src="/Assignment4/DatabaseImage.PNG">
 
         
       
