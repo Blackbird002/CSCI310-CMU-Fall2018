@@ -20,4 +20,34 @@ public class MainActivityTest {
 
         assertEquals(expected, output, delta);
     }
+
+    @Test
+    public void calculateFibCase2() {
+        int expected = 9227465;
+        int delta = 1;
+
+        //The nth Fibonacci term
+        int input = 35;
+
+        //The result from the test
+        MainActivity TestActivity= new MainActivity();
+        int output = TestActivity.calculateFib(input);
+
+        assertEquals(expected, output, delta);
+    }
+
+    @Test
+    public void calculateFibCase3() {
+        int expected = 144;
+        int delta = 1;
+
+        //The nth Fibonacci term
+        int input = 12;
+
+        //The result from the test
+        MainActivity TestActivity= new MainActivity();
+        int output = TestActivity.calculateFib(input);
+
+        assertEquals(expected, output, delta);
+    }
 }
