@@ -76,3 +76,9 @@ A "Hello World" type of Android Application that calculates F(n) - Fibonacci val
 **Testing the MainActivity class:**
 <br>
 <img src="/Assignment5/TestResults.PNG">
+
+## FINAL PROJECT
+Link to repository: https://github.com/Blackbird002/PlantFarm
+
+**Description:**
+Android Application implementing C.R.U.D functionality with Google's Firebase database as Android Application.
