@@ -81,4 +81,4 @@ A "Hello World" type of Android Application that calculates F(n) - Fibonacci val
 Link to repository: https://github.com/Blackbird002/PlantFarm
 
 **Description:**
-Android Application implementing C.R.U.D functionality with Google's Firebase database as Android Application.
+Android Application implementing C.R.U.D functionality with Google's Firebase database.
