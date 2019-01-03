@@ -1,7 +1,7 @@
 # CSCI310-CMU-Fall2018
 Repository for CSCI 310 Java @ CMU
 
-## Welcome to Riad Shash (Ray's) CSCI 310 - Java Code Repository Dr. MacEvoy!
+## Welcome to Riad Shash (Ray's) CSCI 310 - Java Code Repository
 <br>
 
 ## Assignment#1 is in the Assignment1 (Kattis Problem) folder
